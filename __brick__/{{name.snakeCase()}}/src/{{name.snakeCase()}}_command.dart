@@ -21,6 +21,7 @@ class {{name.pascalCase()}}Command extends Command<int> {
 
   @override
   // TODO: implement name
+  /// Sample usage: cli $name [template]
   String get invocation => throw UnimplementedError();
 
   @override
@@ -31,4 +32,11 @@ class {{name.pascalCase()}}Command extends Command<int> {
   ArgResults? argResultOverrides;
 
   ArgResults get _argResults => argResultOverrides ?? argResults!;
+
+  @override
+  Future<int> run() async {
+    _logger.info('Running command: $name ${_argResults.arguments}');
+
+    return ExitCode.usage.code;
+  }
 }
